@@ -4,7 +4,7 @@
 # Instructions
 ```
 # install
-gem install maze
+gem install my_own_maze
 
 # start game
 maze

@@ -1,2 +1,2 @@
-require 'maze'
-Maze.new.run
+require 'my_own_maze'
+MyOwnMaze.new.run

@@ -2,7 +2,7 @@ require 'io/console'
 require 'yaml'
 Dir["#{File.expand_path('../../lib', __FILE__)}/**/*.rb"].each {|file| require file }
 
-class Maze
+class MyOwnMaze
   KEYS = {
     'w' => 'up',
     's' => 'down',
