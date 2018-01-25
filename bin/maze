@@ -1,0 +1,2 @@
+require 'maze'
+Maze.new.run
