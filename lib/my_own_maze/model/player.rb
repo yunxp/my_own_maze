@@ -1,11 +1,11 @@
 class Player
   attr_accessor :x, :y
+
   def initialize(x, y)
-    @x = x
-    @y = y
+    @x, @y = x, y
   end
 
-  def is_here?(x, y)
-    @x == x && @y == y
+  def set_position(x, y)
+    @x, @y = x, y
   end
 end
