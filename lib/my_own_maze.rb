@@ -53,7 +53,7 @@ class MyOwnMaze
   end
 
   def init_map
-    maze_map = YAML.load(File.read("config/maze.yml"))
+    maze_map = YAML.load(File.read(File.expand_path('../../config/maze.yml', __FILE__)))
     exit unless maze_map[@level]
     maze_map[@level]
   end
