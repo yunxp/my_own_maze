@@ -1,4 +1,11 @@
 class MazeOperation < Operation
+  ACTIONS = ['a', 'd', 'w', 's']
+
+  def do(action)
+    return unless ACTIONS.include?(action)
+    send("do_#{action}")
+  end
+  
   # go left
   def do_a
     go(@player.x - 1, @player.y)
@@ -21,8 +28,7 @@ class MazeOperation < Operation
 
   private
   def go(x, y)
-    @board.find_point(@player.x, @player.y).type = 'road'
+    return unless @rule.can_go?(x, y)
     @player.set_position(x, y)
-    @board.find_point(x, y).type = 'player'
   end
 end

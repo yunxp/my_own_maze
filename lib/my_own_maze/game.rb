@@ -1,13 +1,13 @@
 class Game
-  attr_accessor :level, :player, :board, :rule, :operation, :style
+  attr_accessor :level
 
   def initialize(level = 1)
     @level = level
-    init_player
     init_board
     init_rule
+    init_player
     init_operation
-    init_display
+    init_style
   end
 
   private
@@ -27,7 +27,7 @@ class Game
     raise 'undefined init_operation method'
   end
 
-  def init_display
-    raise 'undefined init_display method'
+  def init_style
+    raise 'undefined init_style method'
   end
 end

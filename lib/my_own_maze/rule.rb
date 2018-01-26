@@ -1,7 +1,6 @@
 class Rule
-  def initialize(board, player)
+  def initialize(board)
     @board = board
-    @player = player
   end
 
   def success?
@@ -10,13 +9,5 @@ class Rule
 
   def failed?
     raise 'undefined failed method'
-  end
-
-  def can_do?(type)
-    send("can_do_#{type}?")
-  end
-
-  def method_missing(name, *args, &block)
-    return false if name.to_s.include?('can_do_')
   end
 end

@@ -10,4 +10,8 @@ class Point
   def is_type?(type)
     @type == type
   end
+
+  def set_position(x, y)
+    @x, @y = x, y
+  end
 end

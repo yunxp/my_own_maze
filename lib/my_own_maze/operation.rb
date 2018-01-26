@@ -1,16 +1,10 @@
 class Operation
-  def initialize(board, player, rule)
-    @board = board
+  def initialize(player, rule)
     @player = player
     @rule = rule
   end
 
-  def do_operation(type)
-    flag = @rule.can_do?(type)
-    send("do_#{type}") if @rule.can_do?(type)
-  end
-
-  def method_missing(name, *args, &block)
-    
+  def do(action)
+    raise "undefined do(#{action}) method"
   end
 end

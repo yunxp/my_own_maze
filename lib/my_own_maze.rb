@@ -13,11 +13,11 @@ class MyOwnMaze
 
   def run
     loop do
-      @maze_game.style.print_p
+      @game.print_p
       input = STDIN.getch
       exit if input == 'e'
-      @maze_game.operation.do_operation(input) if input != nil && input != ''
-      success if @maze_game.rule.success?
+      @game.do(input) if input != nil && input != ''
+      success if @game.success?
     end
   rescue StandardError
     exit
@@ -27,14 +27,14 @@ class MyOwnMaze
 
   private
   def init_game
-    @maze_game = Object.const_get("#{@type}Game").new(@level)
+    @game = Object.const_get("#{@type}Game").new(@level)
     print "\033[0m" # reset
     print "\033[2J" # clear screen
     print "\x1B[?25l" # disable cursor
   end
 
   def success
-    @maze_game.style.print_p
+    @game.print_p
     puts "success!!!"
     sleep 1
     @level = @level + 1
