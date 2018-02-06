@@ -1,13 +1,19 @@
 class MazeRule < Rule
 
+  def initialize(maze)
+    @maze = maze
+  end
+
   def success?(x, y)
-    point = @board.find_point(x, y)
-    point && point.is_type?('end_point')
+    @maze.is_end?(x, y)
   end
 
   # can go?
   def can_go?(x, y)
-    point = @board.find_point(x, y)
-    point && !point.is_type?('wall')
+    @maze.has_point?(x, y)
+  end
+
+  def calculate(x, y)
+    MazeSolution.new(@maze).calculate(x, y)
   end
 end

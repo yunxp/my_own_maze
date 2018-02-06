@@ -10,5 +10,5 @@ Gem::Specification.new do |gem|
   gem.executables   = %w{ maze }
   gem.files         = Dir.glob("{bin,lib,config}/**/*")
   gem.name          = "my_own_maze"
-  gem.version       = "1.0.2"
+  gem.version       = "1.1.0"
 end

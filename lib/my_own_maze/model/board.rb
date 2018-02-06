@@ -1,10 +1,10 @@
 class Board
-  attr_accessor :width, :height, :points
+  attr_accessor :points, :width, :height
 
-  def initialize(width, height, points)
+  def initialize(points, width, height)
+    @points = points
     @width = width
     @height = height
-    @points = points
   end
 
   def find_point(x, y)

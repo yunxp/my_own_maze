@@ -1,0 +1,5 @@
+MazeGame:
+  width: 41
+  height: 21
+  maze_type: 'RecursiveMaze'
+  maze_style: 'SimpleMaze'

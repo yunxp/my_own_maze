@@ -1,7 +1,7 @@
 class MazeGame < Game
-  def initialize(level = 1)
-    read_maze_map(level)
-    super(level)
+
+  def start
+    @operation.print_maze
   end
 
   def success?
@@ -12,45 +12,38 @@ class MazeGame < Game
     @operation.do(action)
   end
 
-  def print_p
-    @style.print_p(@board.points)
-    @style.print_p([@player])
+  def print_success
+    @operation.print_maze
+    @style.print_success(@maze.width/2, @maze.height/2)
   end
 
   private
-  def read_maze_map(level)
-    map = YAML.load(File.read(File.expand_path('../../../../config/maze.yml', __FILE__)))
-    raise "undefined level #{level}" unless map[level]
-    @maze_map = map[level]
-    @width = @maze_map['map'].size
-    @height = @maze_map['map'][0].size
+
+  def init_game
+    init_maze
+    init_rule
+    init_player
+    init_style
+    init_operation
   end
 
-  def init_board
-    points = []
-    @maze_map['map'].each_with_index do |row, x|
-      row.each_with_index do |cell, y|
-        type = cell == 0 ? 'road' : 'wall'
-        type = 'end_point' if @maze_map['end_point'][0] == x && @maze_map['end_point'][1] == y
-        points << Point.new(x, y, type)
-      end
-    end
-    @board = Board.new(@width, @height, points)
+  def init_maze
+    @maze = Object.const_get(@game_config['maze_type']).new(@game_config['width'], @game_config['height']).generate
   end
   
   def init_rule
-    @rule = MazeRule.new(@board)
+    @rule = MazeRule.new(@maze)
   end
 
   def init_player
-    @player = Point.new(@maze_map['start_point'][0], @maze_map['start_point'][1], 'player')
-  end
-
-  def init_operation
-    @operation = MazeOperation.new(@player, @rule)
+    @player = Point.new(@maze.start_point.x, @maze.start_point.y)
   end
 
   def init_style
-    @style = MazeStyle.new
+    @style = MazeDisplay.new(Object.const_get("#{@game_config['maze_style']}Style").new)
+  end
+
+  def init_operation
+    @operation = MazeOperation.new(@maze, @player, @rule, @style)
   end
 end
